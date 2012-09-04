@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditChoiceanswerTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditChoiceanswerLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{choiceanswerController.selected.id}" title="#{bundle.EditChoiceanswerTitle_id}" required="true" requiredMessage="#{bundle.EditChoiceanswerRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditChoiceanswerLabel_providedanswer}" for="providedanswer" />
+                    <h:inputText id="providedanswer" value="#{choiceanswerController.selected.providedanswer}" title="#{bundle.EditChoiceanswerTitle_providedanswer}" />
+                    <h:outputLabel value="#{bundle.EditChoiceanswerLabel_answertimestamp}" for="answertimestamp" />
+                    <h:inputText id="answertimestamp" value="#{choiceanswerController.selected.answertimestamp}" title="#{bundle.EditChoiceanswerTitle_answertimestamp}" required="true" requiredMessage="#{bundle.EditChoiceanswerRequiredMessage_answertimestamp}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditChoiceanswerLabel_userid}" for="userid" />
+                    <h:selectOneMenu id="userid" value="#{choiceanswerController.selected.userid}" title="#{bundle.EditChoiceanswerTitle_userid}" >
+                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditChoiceanswerLabel_questionid}" for="questionid" />
+                    <h:selectOneMenu id="questionid" value="#{choiceanswerController.selected.questionid}" title="#{bundle.EditChoiceanswerTitle_questionid}" >
+                        <f:selectItems value="#{questionController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditChoiceanswerLabel_questionnaireid}" for="questionnaireid" />
+                    <h:selectOneMenu id="questionnaireid" value="#{choiceanswerController.selected.questionnaireid}" title="#{bundle.EditChoiceanswerTitle_questionnaireid}" >
+                        <f:selectItems value="#{questionnaireController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{choiceanswerController.update}" value="#{bundle.EditChoiceanswerSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditChoiceanswerViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{choiceanswerController.prepareList}" value="#{bundle.EditChoiceanswerShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditChoiceanswerIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

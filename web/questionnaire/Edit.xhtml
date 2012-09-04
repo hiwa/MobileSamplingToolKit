@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditQuestionnaireTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditQuestionnaireLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{questionnaireController.selected.name}" title="#{bundle.EditQuestionnaireTitle_name}" required="true" requiredMessage="#{bundle.EditQuestionnaireRequiredMessage_name}"/>
+                    <h:outputLabel value="#{bundle.EditQuestionnaireLabel_numberofquestions}" for="numberofquestions" />
+                    <h:inputText id="numberofquestions" value="#{questionnaireController.selected.numberofquestions}" title="#{bundle.EditQuestionnaireTitle_numberofquestions}" />
+                    <h:outputLabel value="#{bundle.EditQuestionnaireLabel_type}" for="type" />
+                    <h:selectOneMenu id="questionnairetype" value="#{questionnaireController.selected.type}" title="#{bundle.EditQuestionnaireTitle_type}">
+                        <f:selectItem itemValue="onetime" itemLabel="One Time" />
+                        <f:selectItem itemValue="frequent" itemLabel="Frequent"/>                 
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditQuestionnaireLabel_frequency}" for="frequency" />
+                    <h:inputText id="frequency" value="#{questionnaireController.selected.frequency}" title="#{bundle.EditQuestionnaireTitle_frequency}" />
+                    <h:outputLabel value="#{bundle.EditQuestionnaireLabel_context}" for="context" />
+                    <h:inputText id="context" value="#{questionnaireController.selected.context}" title="#{bundle.EditQuestionnaireTitle_context}" />
+                    <h:outputLabel value="#{bundle.EditQuestionnaireLabel_publishdate}" for="publishdate" />
+                  <h:dataTable var="publishdate">
+                        <h:column>
+                            <f:facet name="header">                         
+                                <h:selectOneMenu id="publishDay" value="#{questionnaireController.publishDay}">
+                                    <f:selectItems id="publishDayList" value="#{questionnaireController.publishDayListItem}"/>
+                                </h:selectOneMenu>
+                                <h:selectOneMenu id="publishMonth" value="#{questionnaireController.publishMonth}">
+                                    <f:selectItems id="publishMonthList" value="#{questionnaireController.publishMonthListItem}"/>
+                                </h:selectOneMenu>
+                                <h:selectOneMenu id="publishYear" value="#{questionnaireController.publishYear}">
+                                    <f:selectItems id="publishYearList" value="#{questionnaireController.publishYearListItem}"/>
+                                </h:selectOneMenu>
+                            </f:facet>
+                        </h:column>
+                    </h:dataTable>
+                    <h:outputLabel value="#{bundle.EditQuestionnaireLabel_deadline}" for="deadline" />
+                    <h:dataTable var="publishdate">
+                        <h:column>
+                            <f:facet name="header">                         
+                                <h:selectOneMenu id="deadlineDay" value="#{questionnaireController.deadlineDay}">
+                                    <f:selectItems id="deadlineDayList" value="#{questionnaireController.deadlineDayListItem}"/>
+                                </h:selectOneMenu>
+                                <h:selectOneMenu id="deadlineMonth" value="#{questionnaireController.deadlineMonth}">
+                                    <f:selectItems id="deadlineMonthList" value="#{questionnaireController.deadlineMonthListItem}"/>
+                                </h:selectOneMenu>
+                                <h:selectOneMenu id="deadlineYear" value="#{questionnaireController.deadlineYear}">
+                                    <f:selectItems id="deadlineYearList" value="#{questionnaireController.deadlineYearListItem}"/>
+                                </h:selectOneMenu>
+                            </f:facet>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGrid>
+                <h:commandLink action="#{questionnaireController.update}" value="#{bundle.EditQuestionnaireSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditQuestionnaireViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{questionnaireController.prepareList}" value="#{bundle.EditQuestionnaireShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditQuestionnaireIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

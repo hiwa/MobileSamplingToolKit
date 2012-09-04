@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.0" 
+              xmlns="http://java.sun.com/xml/ns/javaee" 
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+    <application>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+
+        <navigation-rule>
+            <from-view-id>/login.xhtml</from-view-id>
+            <navigation-case>
+                <from-action>#{loginManager.gotoSignup}</from-action> 
+                <to-view-id>/signup.xhtml</to-view-id> 
+            </navigation-case>
+        </navigation-rule>
+        <navigation-rule>-
+            <from-view-id>/signup.xhtml</from-view-id>
+            <navigation-case>
+                <from-action></from-action> 
+                <to-view-id>/signup.xhtml</to-view-id> 
+            </navigation-case>
+
+        </navigation-rule>
+
+        <navigation-rule>
+            <from-view-id>/login.xhtml</from-view-id>
+            <navigation-case>
+                <from-action>#{loginManager.authenticateUser}</from-action>
+                <from-outcome>true</from-outcome>
+                <if>#{loginManager.isAdmin}</if> 
+                <to-view-id>/adminpanel.xhtml</to-view-id> 
+            </navigation-case>
+            <navigation-case>
+                <from-action>#{loginManager.authenticateUser}</from-action>
+                <from-outcome>true</from-outcome>
+                <if>#{not loginManager.isAdmin}</if> 
+                <to-view-id>/userpanel.xhtml</to-view-id> 
+            </navigation-case>
+
+            <navigation-case>
+                <from-action>#{loginManager.authenticateUser}</from-action>
+                <from-outcome>false</from-outcome>
+                <to-view-id>/login.xhtml</to-view-id> 
+            </navigation-case>
+
+        </navigation-rule>
+
+        <navigation-rule>
+            <from-view-id>/organization/Create.xhtml</from-view-id>
+            <navigation-case>
+                <from-action>#{organizationController.create}</from-action> 
+                <to-view-id>/organization/List.xhtml</to-view-id> 
+            </navigation-case>
+        </navigation-rule>
+
+        <navigation-rule>
+            <from-view-id>/adminpanel.xhtml</from-view-id>
+
+            <navigation-case >
+
+                <from-outcome>homepage?faces-redirect=true</from-outcome>
+                <to-view-id>/login.xhtml</to-view-id> 
+                <redirect /> 
+            </navigation-case>
+        </navigation-rule>
+
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+    </application>
+</faces-config>

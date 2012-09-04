@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewUserXOrganizationTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewUserXOrganizationLabel_id}"/>
+                    <h:outputText value="#{userXOrganizationController.selected.id}" title="#{bundle.ViewUserXOrganizationTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewUserXOrganizationLabel_organizationid}"/>
+                    <h:outputText value="#{userXOrganizationController.selected.organizationid}" title="#{bundle.ViewUserXOrganizationTitle_organizationid}"/>
+                    <h:outputText value="#{bundle.ViewUserXOrganizationLabel_userid}"/>
+                    <h:outputText value="#{userXOrganizationController.selected.userid}" title="#{bundle.ViewUserXOrganizationTitle_userid}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{userXOrganizationController.destroyAndView}" value="#{bundle.ViewUserXOrganizationDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewUserXOrganizationEditLink}"/>
+                <br />
+                <h:commandLink action="#{userXOrganizationController.prepareCreate}" value="#{bundle.ViewUserXOrganizationCreateLink}" />
+                <br />
+                <h:commandLink action="#{userXOrganizationController.prepareList}" value="#{bundle.ViewUserXOrganizationShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewUserXOrganizationIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

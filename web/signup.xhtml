@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateUserTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+
+            <h:form id="form" enctype="multipart/form-data">
+                <!--                <script type="text/javascript" src="js/jquery.js"></script>
+                                <script type="text/javascript" src="js/signupvalidator.js"></script>-->
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateUserLabel_username}" for="username"/>
+                    <h:inputText id="username" value="#{userController.selected.username}" title="#{bundle.CreateUserTitle_username}" />
+                    <h:outputLabel value="#{bundle.CreateUserLabel_password}" for="password" />
+                    <h:inputText id="password" value="#{userController.selected.password}" title="#{bundle.CreateUserTitle_password}" />
+                    <h:outputLabel value="#{bundle.CreateUserLabel_firstname}" for="firstname" />
+                    <h:inputText id="firstname" value="#{userController.selected.firstname}" title="#{bundle.CreateUserTitle_firstname}" />
+                    <h:outputLabel value="#{bundle.CreateUserLabel_lastname}" for="lastname" />
+                    <h:inputText id="lastname" value="#{userController.selected.lastname}" title="#{bundle.CreateUserTitle_lastname}" />
+                    <h:outputLabel value="#{bundle.CreateUserLabel_sex}" for="sex" />
+                    <h:selectOneMenu id="gender" value="#{userController.selected.sex}" title="#{bundle.CreateUserTitle_sex}">
+                        <f:selectItem itemValue="#{true}" itemLabel="Male" />
+                        <f:selectItem itemValue="#{false}" itemLabel="Female" />
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateUserLabel_birthdate}" for="birthdate" />
+                    <h:dataTable var="birthdate">
+                        <h:column>
+                            <f:facet name="header">                         
+                                <h:selectOneMenu id="birthDay" value="#{userController.birthDay}">
+                                    <f:selectItems id="birthDayList" value="#{userController.birthDayListItem}"/>
+                                </h:selectOneMenu>
+                                <h:selectOneMenu id="birthMonth" value="#{userController.birthMonth}">
+                                    <f:selectItems id="birthMonthList" value="#{userController.birthMonthListItem}"/>
+                                </h:selectOneMenu>
+                                <h:selectOneMenu id="birthYear" value="#{userController.birthYear}">
+                                    <f:selectItems id="birthYearList" value="#{userController.birthYearListItem}"/>
+                                </h:selectOneMenu>
+                            </f:facet>
+                        </h:column></h:dataTable>
+                    <h:outputLabel value="#{bundle.CreateUserLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{userController.selected.email}" title="#{bundle.CreateUserTitle_email}" />
+                    <h:outputLabel value="#{bundle.CreateUserLabel_image}" for="image" />
+                    <h:inputText id="image" value="#{userController.selected.image}" title="#{bundle.CreateUserTitle_image}" />
+                    <h:outputLabel value="#{bundle.CreateUserLabel_about}" for="about" />
+                    <h:inputTextarea rows="4" cols="30" id="about" value="#{userController.selected.about}" title="#{bundle.CreateUserTitle_about}" />
+                    <h:outputLabel value="#{bundle.CreateUserLabel_country}" for="country" />
+                    <h:selectOneMenu id="country" value="#{userController.selected.country}" title="#{bundle.CreateUserTitle_country}">
+                        <f:selectItems value="#{userController.countriesListItem}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="Organizations:" for="organization" />
+                    <h:dataTable value="#{userController.selectableOrganizations}" var="item" rowClasses="jsfcrud_odd_row,jsfcrud_even_row">
+                        <h:column>
+                            <h:selectBooleanCheckbox value="#{item.selected}"/>
+                            <h:outputText value="#{item.id}" style="display: none"/>
+                        </h:column>
+                        <h:column>
+                            <h:outputText value="#{item.name}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGrid>
+                <br />
+                <h:commandLink id="submitlink" action="#{userController.create}" value="#{bundle.CreateUserSaveLink}" >
+                </h:commandLink>
+                <br />
+                <br />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

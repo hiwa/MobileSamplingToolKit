@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<style type="text/css">body {
+background-color: #EEC900;
+font: 100%/2 arial, helvetica, sans-serif;
+margin: 0; 
+} 
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>Login</title>
+
+</head>
+<body>
+<center>
+<h1>Mobile Sampling Toolkit</h1>
+<h3 id="welcomeMsg">Login</h3>
+
+<h:form id="form">
+<table border="0" cellspacing="1">
+<tbody>
+<tr>
+<td>
+<f:view>
+<h:form >
+<h:dataTable var="username">
+<h:column>
+<f:facet name="header">
+<h:outputLabel id="formj" for="Username" value="Username: "/>
+<h:inputText styleClass="username" autocomplete="off" value="#{loginManager.username}" style="font-size:20pt;height:30px;width: 150px"/>
+</f:facet>
+</h:column>
+</h:dataTable>
+<h:dataTable var="password">
+<h:column>
+<f:facet name="header">
+<h:outputLabel for="Password" value="Password: "/>
+<h:inputSecret id="password" value="#{loginManager.password}" style="font-size:20pt;height:30px;width: 150px"/>
+</f:facet>
+</h:column>
+</h:dataTable>
+<h:dataTable var="newAccount">
+<h:column>
+<f:facet name="header">
+<h:commandButton styleClass="loginclass" id="loginbtn" value="Login!" action="#{loginManager.authenticateUser}" type="submit"/>
+
+</f:facet>
+<f:facet name="header">
+<h:commandButton class="classname" value="Sign Up" id="signupbtn" action="signup.xhtml"/>
+</f:facet>
+</h:column>
+</h:dataTable>
+
+</h:form>
+
+</f:view>
+</td>
+</tr>
+</tbody>
+
+</table>
+
+</h:form>
+<span id="validationmessage"></span> <br/>
+<h:outputLabel style="color: red" styleClass="lbl">#{loginManager.lblUserAuthenticated}</h:outputLabel>
+</center>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/loginvalidator.js"></script>
+</body>
+</html>

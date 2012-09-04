@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewQuestionnaireTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewQuestionnaireLabel_name}"/>
+                    <h:outputText value="#{questionnaireController.selected.name}" title="#{bundle.ViewQuestionnaireTitle_name}"/>
+                    <h:outputText value="#{bundle.ViewQuestionnaireLabel_numberofquestions}"/>
+                    <h:outputText value="#{questionnaireController.selected.numberofquestions}" title="#{bundle.ViewQuestionnaireTitle_numberofquestions}"/>
+                    <h:outputText value="#{bundle.ViewQuestionnaireLabel_type}"/>
+                    <h:outputText value="#{questionnaireController.selected.type}" title="#{bundle.ViewQuestionnaireTitle_type}"/>
+                    <h:outputText value="#{bundle.ViewQuestionnaireLabel_frequency}"/>
+                    <h:outputText value="#{questionnaireController.selected.frequency}" title="#{bundle.ViewQuestionnaireTitle_frequency}"/>
+                    <h:outputText value="#{bundle.ViewQuestionnaireLabel_context}"/>
+                    <h:outputText value="#{questionnaireController.selected.context}" title="#{bundle.ViewQuestionnaireTitle_context}"/>
+                    <h:outputText value="#{bundle.ViewQuestionnaireLabel_createdate}"/>
+                    <h:outputText value="#{questionnaireController.selected.createdate}" title="#{bundle.ViewQuestionnaireTitle_createdate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" timeZone="#{questionnaireController.timeZone}"/>
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewQuestionnaireLabel_publishdate}"/>
+                    <h:outputText value="#{questionnaireController.selected.publishdate}" title="#{bundle.ViewQuestionnaireTitle_publishdate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" timeZone="#{questionnaireController.timeZone}"/>
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewQuestionnaireLabel_deadline}"/>
+                    <h:outputText value="#{questionnaireController.selected.deadline}" title="#{bundle.ViewQuestionnaireTitle_deadline}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" timeZone="#{questionnaireController.timeZone}"/>
+                    </h:outputText>
+
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{questionnaireController.destroyAndView}" value="#{bundle.ViewQuestionnaireDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewQuestionnaireEditLink}"/>
+                <br />
+                <h:commandLink action="#{questionnaireController.prepareCreate}" value="#{bundle.ViewQuestionnaireCreateLink}" />
+                <br />
+                <h:commandLink action="#{questionnaireController.prepareList}" value="#{bundle.ViewQuestionnaireShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewQuestionnaireIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

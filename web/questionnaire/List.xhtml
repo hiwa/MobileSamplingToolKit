@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListQuestionnaireTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListQuestionnaireEmpty}" rendered="#{questionnaireController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{questionnaireController.items.rowCount > 0}">
+                    <h:outputText value="#{questionnaireController.pagination.pageFirstItem + 1}..#{questionnaireController.pagination.pageLastItem + 1}/#{questionnaireController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{questionnaireController.previous}" value="#{bundle.Previous} #{questionnaireController.pagination.pageSize}" rendered="#{questionnaireController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{questionnaireController.next}" value="#{bundle.Next} #{questionnaireController.pagination.pageSize}" rendered="#{questionnaireController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{questionnaireController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                         <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListQuestionnaireTitle_name}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.name}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListQuestionnaireTitle_numberofquestions}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numberofquestions}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListQuestionnaireTitle_type}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.type}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListQuestionnaireTitle_frequency}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.frequency}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListQuestionnaireTitle_context}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.context}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListQuestionnaireTitle_createdate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.createdate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" timeZone="#{userController.timeZone}"/>
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListQuestionnaireTitle_publishdate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.publishdate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" timeZone="#{userController.timeZone}"/>
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListQuestionnaireTitle_deadline}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.deadline}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" timeZone="#{userController.timeZone}"/>
+                            </h:outputText>
+                        </h:column>
+                       
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{questionnaireController.prepareView}" value="#{bundle.ListQuestionnaireViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{questionnaireController.prepareEdit}" value="#{bundle.ListQuestionnaireEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{questionnaireController.destroy}" value="#{bundle.ListQuestionnaireDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{questionnaireController.prepareCreate}" value="#{bundle.ListQuestionnaireCreateLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ListQuestionnaireIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

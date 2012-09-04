@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListUserXQuestionnaireTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListUserXQuestionnaireEmpty}" rendered="#{userXQuestionnaireController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{userXQuestionnaireController.items.rowCount > 0}">
+                    <h:outputText value="#{userXQuestionnaireController.pagination.pageFirstItem + 1}..#{userXQuestionnaireController.pagination.pageLastItem + 1}/#{userXQuestionnaireController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{userXQuestionnaireController.previous}" value="#{bundle.Previous} #{userXQuestionnaireController.pagination.pageSize}" rendered="#{userXQuestionnaireController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{userXQuestionnaireController.next}" value="#{bundle.Next} #{userXQuestionnaireController.pagination.pageSize}" rendered="#{userXQuestionnaireController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{userXQuestionnaireController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUserXQuestionnaireTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUserXQuestionnaireTitle_completedstate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.completedstate}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUserXQuestionnaireTitle_questionnaireid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.questionnaireid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListUserXQuestionnaireTitle_userid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.userid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{userXQuestionnaireController.prepareView}" value="#{bundle.ListUserXQuestionnaireViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{userXQuestionnaireController.prepareEdit}" value="#{bundle.ListUserXQuestionnaireEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{userXQuestionnaireController.destroy}" value="#{bundle.ListUserXQuestionnaireDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{userXQuestionnaireController.prepareCreate}" value="#{bundle.ListUserXQuestionnaireCreateLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ListUserXQuestionnaireIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

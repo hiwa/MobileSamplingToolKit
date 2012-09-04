@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditQuestionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditQuestionLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{questionController.selected.id}" title="#{bundle.EditQuestionTitle_id}" required="true" requiredMessage="#{bundle.EditQuestionRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditQuestionLabel_type}" for="type" />
+                    <h:inputText id="type" value="#{questionController.selected.type}" title="#{bundle.EditQuestionTitle_type}" />
+                    <h:outputLabel value="#{bundle.EditQuestionLabel_questiontext}" for="questiontext" />
+                    <h:inputTextarea rows="4" cols="30" id="questiontext" value="#{questionController.selected.questiontext}" title="#{bundle.EditQuestionTitle_questiontext}" />
+                    <h:outputLabel value="#{bundle.EditQuestionLabel_answertext}" for="answertext" />
+                    <h:inputTextarea rows="4" cols="30" id="answertext" value="#{questionController.selected.answertext}" title="#{bundle.EditQuestionTitle_answertext}" />
+                    <h:outputLabel value="#{bundle.EditQuestionLabel_mandatory}" for="mandatory" />
+                    <h:inputText id="mandatory" value="#{questionController.selected.mandatory}" title="#{bundle.EditQuestionTitle_mandatory}" />
+                    <h:outputLabel value="#{bundle.EditQuestionLabel_correctanswer}" for="correctanswer" />
+                    <h:inputTextarea rows="4" cols="30" id="correctanswer" value="#{questionController.selected.correctanswer}" title="#{bundle.EditQuestionTitle_correctanswer}" />
+                    <h:outputLabel value="#{bundle.EditQuestionLabel_ordernumber}" for="ordernumber" />
+                    <h:inputText id="ordernumber" value="#{questionController.selected.ordernumber}" title="#{bundle.EditQuestionTitle_ordernumber}" />
+                    <h:outputLabel value="#{bundle.EditQuestionLabel_weight}" for="weight" />
+                    <h:inputText id="weight" value="#{questionController.selected.weight}" title="#{bundle.EditQuestionTitle_weight}" />
+                    <h:outputLabel value="#{bundle.EditQuestionLabel_tag}" for="tag" />
+                    <h:inputText id="tag" value="#{questionController.selected.tag}" title="#{bundle.EditQuestionTitle_tag}" />
+                    <h:outputLabel value="#{bundle.EditQuestionLabel_questionnaireid}" for="questionnaireid" />
+                    <h:selectOneMenu id="questionnaireid" value="#{questionController.selected.questionnaireid}" title="#{bundle.EditQuestionTitle_questionnaireid}" >
+                        <f:selectItems value="#{questionnaireController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{questionController.update}" value="#{bundle.EditQuestionSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditQuestionViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{questionController.prepareList}" value="#{bundle.EditQuestionShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditQuestionIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

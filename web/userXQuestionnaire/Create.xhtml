@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateUserXQuestionnaireTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateUserXQuestionnaireLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{userXQuestionnaireController.selected.id}" title="#{bundle.CreateUserXQuestionnaireTitle_id}" required="true" requiredMessage="#{bundle.CreateUserXQuestionnaireRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateUserXQuestionnaireLabel_completedstate}" for="completedstate" />
+                    <h:inputText id="completedstate" value="#{userXQuestionnaireController.selected.completedstate}" title="#{bundle.CreateUserXQuestionnaireTitle_completedstate}" />
+                    <h:outputLabel value="#{bundle.CreateUserXQuestionnaireLabel_questionnaireid}" for="questionnaireid" />
+                    <h:selectOneMenu id="questionnaireid" value="#{userXQuestionnaireController.selected.questionnaireid}" title="#{bundle.CreateUserXQuestionnaireTitle_questionnaireid}" >
+                        <f:selectItems value="#{questionnaireController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateUserXQuestionnaireLabel_userid}" for="userid" />
+                    <h:selectOneMenu id="userid" value="#{userXQuestionnaireController.selected.userid}" title="#{bundle.CreateUserXQuestionnaireTitle_userid}" >
+                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{userXQuestionnaireController.create}" value="#{bundle.CreateUserXQuestionnaireSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{userXQuestionnaireController.prepareList}" value="#{bundle.CreateUserXQuestionnaireShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateUserXQuestionnaireIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <style type="text/css">body {
+                background-color: #70DBDB;
+                font: 100%/2 arial, helvetica, sans-serif;
+                margin: 0;
+            }
+        </style>
+        <title>Admin Panel</title>
+
+    </h:head>
+    <h:body> 
+        <center>
+            <h1>Ciao #{loginManager.currentUser.firstname}! </h1>
+            <h:form id="form">
+                <h:commandLink action="questionnaire/List.xhtml">Questionnaires<br/>
+                </h:commandLink> 
+                <h:commandLink action="user/List.xhtml">Users<br/>
+                </h:commandLink> 
+                <h:commandLink action="organization/List.xhtml">Organizations<br/>
+                </h:commandLink> 
+                <h:commandButton id="logoutbtn" value="Logout" action="#{loginManager.logout}" type="submit"/>
+
+            </h:form>
+        </center>
+    </h:body>
+</html>

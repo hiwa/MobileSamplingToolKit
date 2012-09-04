@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditUserXOrganizationTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditUserXOrganizationLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{userXOrganizationController.selected.id}" title="#{bundle.EditUserXOrganizationTitle_id}" required="true" requiredMessage="#{bundle.EditUserXOrganizationRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditUserXOrganizationLabel_organizationid}" for="organizationid" />
+                    <h:selectOneMenu id="organizationid" value="#{userXOrganizationController.selected.organizationid}" title="#{bundle.EditUserXOrganizationTitle_organizationid}" >
+                        <f:selectItems value="#{organizationController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditUserXOrganizationLabel_userid}" for="userid" />
+                    <h:selectOneMenu id="userid" value="#{userXOrganizationController.selected.userid}" title="#{bundle.EditUserXOrganizationTitle_userid}" >
+                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{userXOrganizationController.update}" value="#{bundle.EditUserXOrganizationSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditUserXOrganizationViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{userXOrganizationController.prepareList}" value="#{bundle.EditUserXOrganizationShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditUserXOrganizationIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

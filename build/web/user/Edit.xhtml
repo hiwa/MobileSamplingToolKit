@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditUserTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form id="form">
+                <h:panelGrid columns="2">
+                    <h:outputLabel style="display:none;" value="#{bundle.EditUserLabel_id}" for="id" />
+                    <h:inputText id="id" style="display:none;" value="#{userController.selected.id}" title="#{bundle.EditUserTitle_id}" required="true" requiredMessage="#{bundle.EditUserRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditUserLabel_username}" for="username" />
+                    <h:inputText id="username" value="#{userController.selected.username}" title="#{bundle.EditUserTitle_username}" />
+                    <h:outputLabel value="#{bundle.EditUserLabel_password}" for="password" />
+                    <h:inputText id="password" value="#{userController.selected.password}" title="#{bundle.EditUserTitle_password}" />
+                    <h:outputLabel value="#{bundle.EditUserLabel_firstname}" for="firstname" />
+                    <h:inputText id="firstname" value="#{userController.selected.firstname}" title="#{bundle.EditUserTitle_firstname}" />
+                    <h:outputLabel value="#{bundle.EditUserLabel_lastname}" for="lastname" />
+                    <h:inputText id="lastname" value="#{userController.selected.lastname}" title="#{bundle.EditUserTitle_lastname}" />
+                    <h:outputLabel value="#{bundle.EditUserLabel_type}" for="type" />
+                    <h:selectOneMenu id="type" value="#{userController.selected.type}" title="#{bundle.EditUserTitle_type}">
+                        <f:selectItem itemValue="admin" itemLabel="Administrator" />
+                        <f:selectItem itemValue="user" itemLabel="Normal User" />
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditUserLabel_sex}" for="sex" />
+                    <h:selectOneMenu id="gender" value="#{userController.selected.sex}" title="#{bundle.EditUserTitle_sex}">
+                        <f:selectItem itemValue="#{true}" itemLabel="Male" />
+                        <f:selectItem itemValue="#{false}" itemLabel="Female" />
+                    </h:selectOneMenu> 
+                    <h:outputLabel value="#{bundle.EditUserLabel_birthdate}" for="birthdate" />
+                    <h:dataTable var="birthdate">
+                        <h:column>
+                            <f:facet name="header">                         
+                                <h:selectOneMenu id="birthDay" value="#{userController.birthDay}">
+                                    <f:selectItems id="birthDayList" value="#{userController.birthDayListItem}"/>
+                                </h:selectOneMenu>
+                                <h:selectOneMenu id="birthMonth" value="#{userController.birthMonth}">
+                                    <f:selectItems id="birthMonthList" value="#{userController.birthMonthListItem}"/>
+                                </h:selectOneMenu>
+                                <h:selectOneMenu id="birthYear" value="#{userController.birthYear}">
+                                    <f:selectItems id="birthYearList" value="#{userController.birthYearListItem}"/>
+                                </h:selectOneMenu>
+                            </f:facet>
+                        </h:column>
+                    </h:dataTable>
+                    <h:outputLabel value="#{bundle.EditUserLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{userController.selected.email}" title="#{bundle.EditUserTitle_email}" />
+                    <h:outputLabel value="#{bundle.EditUserLabel_image}" for="image" />
+                    <h:inputText id="image" value="#{userController.selected.image}" title="#{bundle.EditUserTitle_image}" />
+                    <h:outputLabel value="#{bundle.EditUserLabel_about}" for="about" />
+                    <h:inputTextarea rows="4" cols="30" id="about" value="#{userController.selected.about}" title="#{bundle.EditUserTitle_about}" />
+                    <h:outputLabel value="#{bundle.EditUserLabel_country}" for="country" />
+                    <h:selectOneMenu id="country" value="#{userController.selected.country}" title="#{bundle.EditUserTitle_country}">
+                        <f:selectItems value="#{userController.countriesListItem}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditUserLabel_banned}" for="banned" />
+                    <h:selectOneMenu id="banned" value="#{userController.selected.banned}" title="#{bundle.EditUserTitle_banned}">
+                        <f:selectItem itemValue="#{true}" itemLabel="Yes" />
+                        <f:selectItem itemValue="#{false}" itemLabel="No" />
+                    </h:selectOneMenu> 
+                </h:panelGrid>
+                <h:commandLink action="#{userController.update}" value="#{bundle.EditUserSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditUserViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{userController.prepareList}" value="#{bundle.EditUserShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditUserIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
